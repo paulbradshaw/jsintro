@@ -37,15 +37,25 @@ There is a HTML file in the repository. Here is some of the HTML in that:
 `<p id='showme'>0</p>`
 
 `<button onclick="document.getElementById('changeme').innerHTML = 'Hello'">BUTTON TEXT</button>`
+
 `<img src="http://www.breederretriever.com/photopost/data/591/Picture_126_640x480.jpg" id="empty" onclick="potato()">`
+
 `<script>`
+
 `var score = 0;`
+
 `function potato() {`
+
 `score = score+1;`
+
 `var image = document.getElementById('empty');`
+
 `//image.src = "http://www.picturesnew.com/media/images/picture-wallpaper.jpg";`
+
 `document.getElementById('showme').innerHTML = score;`
+
 `}`
+
 `</script>`
 
 
