@@ -17,6 +17,6 @@ Log in to GitHub and go to the repository at [https://github.com/paulbradshaw/js
 
 Click on the *clone* button in the upper right corner: it looks like a TV/monitor with a downward arrow. You can find it next to the **Download ZIP** button.
 
-
+![](https://raw.githubusercontent.com/paulbradshaw/jsintro/master/clone.png)
 
 
