@@ -99,9 +99,15 @@ Now, on your machine, make some changes to that HTML document in your text edito
 
 Preview the effects in a browser. 
 
-## Step 4 merge those changes into the master version by creating a push request
+## Step 4 merge those changes into the master version by creating a pull request
 
+Once you have made those changes on your laptop (not online), save them and go on GitHub on that machine:
 
+* You should be able to see the changes in green (new) and red (old). 
+* Add a summary of those changes below
+* Click on the 'commit to ...' button below
+* In the upper right corner will be a **Sync** button. Click this to sync with your online GitHub
+* In the same corner, just above, is a button which represents the **pull request**. Click on this to send a request to the original author of this file which you cloned - they can decide to merge your changes with their file.
 
 ## Step 5 explore jQuery
 
