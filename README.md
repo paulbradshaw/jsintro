@@ -116,3 +116,15 @@ To find out more about jQuery try one or more of the following:
 * [This playlist of tutorial videos by LearnCode.academy](https://www.youtube.com/watch?v=hMxGhHNOkCU&list=PLoYCgNOIyGABdI2V8I_SWo22tFpgh2s6_)
 * The free interactive ebook [jQuery Fundamentals](http://jqfundamentals.com/)
 * [Mindy McAdams's jQuery tutorials](https://github.com/macloo/jquery_beginners) and [slides](http://www.slideshare.net/macloo/j-query-review1)
+
+## Other libraries
+
+D3 is pretty useful too.
+
+And Node.js.
+
+And Angular.
+
+And React.js.
+
+I could go on...
