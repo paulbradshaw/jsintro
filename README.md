@@ -99,6 +99,12 @@ Now, on your machine, make some changes to that HTML document in your text edito
 
 Preview the effects in a browser. 
 
+## Step 4 merge those changes into the master version by creating a push request
+
+
+
+## Step 5 explore jQuery
+
 For a bigger challenge, try rewriting the HTML with **jQuery**, which is much much better for this sort of functionality.
 
 [jQuery](https://jquery.com/) is a JavaScript **library**: libraries are collections of functions which have already been written to solve a common problem.
