@@ -120,7 +120,11 @@ To find out more about jQuery try one or more of the following:
 ## Other libraries
 
 D3 is pretty useful too.
-And Node.js
-And Angular
-And React.js
+
+And Node.js.
+
+And Angular.
+
+And React.js.
+
 I could go on...
