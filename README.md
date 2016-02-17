@@ -54,9 +54,12 @@ The HTML creates the page's basic elements:
 * a paragraph with a 0 in it; 
 * an image
 
-Add spaces between those 3 lines of HTML if it helps you.
+Note that those two elements have some **attributes**. These are going to be very important:
 
-The JavaScript does two main things:
+* The `<p>` tag has an `id` attribute with a value of `'showme'`
+* The `img` tag has a `src` attribute, a `id` attribute, and an `onclick` attribute. That last attribute is what starts everything off, as we'll find out.
+
+The *JavaScript* does two main things:
 
 * Create a variable: `var score = 0;`
 * Create a function called 'potato': `function potato() { ... }`
@@ -71,6 +74,45 @@ Everything else is *inside* that function. Here's what happens:
 * Finally, it grabs any elements with an id="showme", and uses `.innerHTML` to set the HTML inside those elements to the value of the variable 'score': `document.getElementById('showme').innerHTML = score;`
 * Don't forget that all these commands inside the function need to be finished with a closing `}`
 
+Now I said that the `onclick` attribute of the `img` was key. This says 'when this image is clicked, do something'. The something in question is the name of a function, followed by (empty) parentheses.
+
+That function is `potato()`, and it refers to the function created in our JavaScript.
+
+Everything inside that function - in the curly brackets `{ }` - is what runs. As explained above, that means the variable `score` is increased by 1, the function looks for anything with an `id='score'`, and then it sets the contents of that to whatever `score` is.
+
+The first time this runs, `score` is turned from 0 to 1, and that 1 is put in the `<p>` with the id attribute described.
+
+The second time, `score` goes up again to 2, and that's again put in that `<p>` tag.
+
+Open this HTML document in a browser and click on the image to see this happening.
+
+
 ## Step 3: Make your changes
 
-All this can be better done with jQuery.
+Now, on your machine, make some changes to that HTML document in your text editor: start with simple additions. For example:
+
+* What if you add another element with `id='showme'`?
+* What if you change the function to increase by more than 1?
+* What if you change the name of the function? Does it still work? How can you fix it?
+* Can you add an element with a different `id` attribute value? How can you change the function to affect that?
+* What if it was `class="showme"`? How would you change your function to grab that?
+
+Preview the effects in a browser. 
+
+For a bigger challenge, try rewriting the HTML with **jQuery**, which is much much better for this sort of functionality.
+
+[jQuery](https://jquery.com/) is a JavaScript **library**: libraries are collections of functions which have already been written to solve a common problem.
+
+In the case of jQuery, that problem is 'how do I handle user interactions and webpage behaviour'. So for example it includes built-in functions to handle **events** such as [mouseover](https://api.jquery.com/mouseover/), [hover](https://api.jquery.com/hover/).
+
+Those interactions are called '**events**' and you can see [a full list of '**event handlers**' on the jQuery **documentation** here](https://api.jquery.com/category/events/)
+
+Webpage behaviour is called **effects** and again [the jQuery documentation has a list of all the effects it can help happen here](https://api.jquery.com/category/effects/)
+
+A third category is 'manipulation': *changing* elements of the webpage (referred to as the DOM in the jargon). A [list of jQuery functionality in this category can be found here](https://api.jquery.com/category/manipulation/)
+
+To find out more about jQuery try one or more of the following:
+
+* [This playlist of tutorial videos by LearnCode.academy](https://www.youtube.com/watch?v=hMxGhHNOkCU&list=PLoYCgNOIyGABdI2V8I_SWo22tFpgh2s6_)
+* The free interactive ebook [jQuery Fundamentals](http://jqfundamentals.com/)
+* [Mindy McAdams's jQuery tutorials](https://github.com/macloo/jquery_beginners) and [slides](http://www.slideshare.net/macloo/j-query-review1)
