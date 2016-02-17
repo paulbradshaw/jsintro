@@ -32,31 +32,20 @@ This should contain all the files from the repository you just cloned. You can n
 
 ## Step 2: Make your changes
 
-There is a HTML file in the repository. Here is some of the HTML in that:
+There is a HTML file in the repository. 
 
-`<p id='showme'>0</p>`
-
-`<button onclick="document.getElementById('changeme').innerHTML = 'Hello'">BUTTON TEXT</button>`
-
-`<img src="http://www.breederretriever.com/photopost/data/591/Picture_126_640x480.jpg" id="empty" onclick="potato()">`
-
-`<script>`
-
-`var score = 0;`
-
-`function potato() {`
-
-`score = score+1;`
-
-`var image = document.getElementById('empty');`
-
-`//image.src = "http://www.picturesnew.com/media/images/picture-wallpaper.jpg";`
-
-`document.getElementById('showme').innerHTML = score;`
-
-`}`
-
-`</script>`
+`<p id='showme'>0</p>
+<button onclick="document.getElementById('changeme').innerHTML = 'Hello'">BUTTON TEXT</button>
+<img src="http://www.breederretriever.com/photopost/data/591/Picture_126_640x480.jpg" id="empty" onclick="potato()">
+<script>
+var score = 0;
+function potato() {
+score = score+1;
+var image = document.getElementById('empty');
+//image.src = "http://www.picturesnew.com/media/images/picture-wallpaper.jpg";
+document.getElementById('showme').innerHTML = score;
+}
+</script>`
 
 
 This has some JavaScript
