@@ -1,17 +1,36 @@
 <html>
 <head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   </head>
 <body>
 <p id='showme'>0</p>
+<p id='testjquery'></p>
 
-<img src="http://www.breederretriever.com/photopost/data/591/Picture_126_640x480.jpg" id="empty" onclick="potato()">
+<img src="http://www.breederretriever.com/photopost/data/591/Picture_126_640x480.jpg" id="empty" onclick="potato()" width="300" height="300">
+<div class="imagegoeshere"></div>
 <script>
 var score = 0;
 function potato() {
 score = score+1;
 var image = document.getElementById('empty');
 document.getElementById('showme').innerHTML = score;
+console.log('score is', score)
 }
+
+
+$(document).ready(function(){
+console.log('jquery running!');
+scoreTwo = 0
+function scoreup() {
+	scoreTwo = scoreTwo+1;
+	$('p#testjquery').text(scoreTwo);
+	}
+$('p#testjquery').text(scoreTwo);
+$('div.imagegoeshere').html('<img src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png">')
+$('div img').click(scoreup);
+});
 </script>
+
 </body>
 </html>
