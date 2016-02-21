@@ -2,6 +2,21 @@
 <head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<style>
+p.drink {
+    background-color: #A9D0F5;
+    padding: 10px;
+    width: 50%;
+    font-weight: bold;
+    font-family: Georgia;
+}
+
+h1 {
+    color: maroon;
+    margin-left: 40px;
+} 
+</style>
   </head>
 <body>
 <h2>You have now drunk <span id='userscore'>0</span>g of sugar</h2>
@@ -11,19 +26,34 @@
 <p id='explained'><a href="http://www.theguardian.com/business/2016/feb/17/cafe-chains-selling-drinks-25-teaspoons-sugar-starbucks-costa-coffee">Read more about 'The cafes serving drinks with 25 teaspoons of sugar per cup' here</a></p>
 
 <script>
+/* Basic 'run when this document is ready' line for jQuery */
 $(document).ready(function(){
 console.log('jquery running!');
+/*Set a score variable at 0 before we create the function that will change that
+If we did this within the function then it would reset to 0 each time*/
 var score = 0
 $(function(){
+	/*When any p with a class attribute of 'drink' is clicked on, run this function*/
 	$('p.drink').on('click', function(){
 		console.log(score);
+		/*This line grabs the data-sugar attribute of whatever has been clicked on (this). 
+		That attribute actually contains the sugar in grams
+		A better way of doing this would be to store those values in a dictionary*/
 		var sugar = $(this).attr('data-sugar');
 		console.log(sugar);
+		/*Because the attribute is actually a string, we need to use parseInt to turn it into a number*/
 		console.log(parseInt(sugar));		
+		/*Then we add it to the score*/
 		score = score+parseInt(sugar)
 		console.log(score);
+		/*Put that score into the part of the sentence with a span id of 'userscore'*/
 		$('span#userscore').text(score);
+		/*Change the paragraph with the same data-sugar attribute
+		to show the text in brackets. The sugar variable is used both to select the right 
+		line, and fill a space in the sentence*/
 		$('p[data-sugar="'+sugar+'"').text('This drink has '+sugar+'g of sugar')
+		/*Every click adds more sugar to their score, so if it goes past a certain level 
+		we then append some text to the heading*/
 		if (score > 150) {
 			$('h2').append('. You are very fat. Well done')
 		}

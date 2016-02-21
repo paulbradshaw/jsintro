@@ -1,0 +1,230 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<style>
+h2 {
+	background-color: #df3479 ;
+	color:#123abc;
+}
+body {
+	text-align: center;
+	background-color: #3a0078; 
+}
+p {
+	color: #ff0000;
+}
+div.joker {
+	background-color: #69BB01;
+	color: #4A0336;
+	font-weight: bold;
+	padding: 10px;
+    width: 150px;
+    height: 230px;
+    font-family: Georgia;
+    margin: auto;
+}
+div.batman {
+	background-color: #000;
+	color: #FFF200;
+	font-weight: bold;
+	padding: 10px;
+    width: 150px;
+    height: 230px;
+    font-family: Georgia;
+	margin: auto;
+}
+img {
+	margin: auto;
+	border: 5px solid;
+	outline: 5px solid;
+}
+.batman {
+	border-color: #FFF200;
+	outline-color: #000;
+	margin: 10px; 
+}
+
+.flash {
+	border-color: #FFF200;
+	outline-color: red;
+	margin: 10px; 
+}
+.magneto {
+	border-color: red;
+	outline-color: purple;
+	margin: 10px; 
+}
+.beastboy {
+	border-color: #009933;
+	outline-color: #cc0099;
+	margin: 10px; 
+}
+.joker {
+	border-color: #ff0000;
+	outline-color: #009900;
+	margin: 10px; 
+}
+.lexluthor {
+	border-color: #ffff00;
+	outline-color: #e600ac;
+	margin: 10px; 
+}
+.f4 {
+	border-color: #fff;
+	outline-color: #000099;
+	margin: 10px; 
+}
+
+.venom {
+	border-color: #e6e6e6;
+	outline-color: #000;
+	margin: 10px; 
+}
+.spiderman {
+	border-color: #0000ff;
+	outline-color: #ff0000;
+	margin: 10px; 
+}
+.wolverine {
+	border-color: #000;
+	outline-color: #ffcc00;
+	margin: 10px; 
+}
+
+
+</style>
+  </head>
+<body>
+<h2><span id='result'></span>Your score is now: <span id='userscore'>0</span></h2>
+<p id='intro'>Welcome to online Battle Attax.</p>
+<p class="step1"> Click on the card you want to use to attack</p>
+<p class="step2"></p>
+<img src="batman.jpg" class='batman' alt="batman" width="170px" height="250px" data-defence='79' data-attack='88'/>
+<img src="flash.jpg" class="flash" alt="flash" width="170px" height="250px" data-defence='93' data-attack='90'/>
+<img src="magneto.jpg" class="magneto" alt="magneto" width="170px" height="250px" data-defence='87' data-attack='90'/>
+<img src="beastboy.jpg" class="beastboy" alt="beastboy" width="170px" height="250px" data-defence='89' data-attack='89'/>
+<img src="joker.jpg" class="joker" alt="joker" width="170px" height="250px" data-defence='87' data-attack='90'/>
+<img src="lexluthor.jpg" class="lexluthor" alt="lexluthor" width="170px" height="250px" data-defence='88' data-attack='89'/>
+<img src="f4.jpg" class="f4" alt="f4" width="170px" height="250px" data-defence='90' data-attack='90'/>
+<img src="venom.jpg" class="venom" alt="venom" width="170px" height="250px" data-defence='87' data-attack='91'/>
+<img src="spiderman.jpg" class="spiderman" alt="spiderman" width="170px" height="250px" data-defence='86' data-attack='88'/>
+<img src="wolverine.jpg" class="wolverine" alt="wolverine" width="170px" height="250px" data-defence='87' data-attack='91'/>
+
+<!--This div is populated with items from a list of JS objects (JSON) in the script-->
+<div id="list"></div>
+<!--this is a text-only version of the images
+<div class='joker' data-attack='90' id="attack"><p>The Joker</p></div>
+<div class='batman' data-defence='79' id="attack"><p>Batman</p></div>-->
+
+
+<script>
+var username = prompt('What is your name?')
+/* Basic 'run when this document is ready' line for jQuery */
+$(document).ready(function(){
+console.log('jquery running!');
+/*Create a list of JS objects (dictionaries, one for each character)*/
+//TODO: Add other properties
+var mylist = [{'name': 'Joker'}, {'name':'Batman'}];
+console.log(mylist[0].name);
+//Loop through that list 
+for (i = 0; i < mylist.length; i++) {
+	// grab the name property at that index
+	console.log(mylist[i].name);
+	//append that name inside some HTML to create a new par.
+	$('div#list').append('<p>'+mylist[i].name+'</p>');
+	//TODO: expanding to add other details
+}
+/*Set a score variable at 0 before we create the function that will change that
+If we did this within the function then it would reset to 0 each time*/
+var score = 0;
+/*The game starts with the user attacking, so we set a variable to store this status
+That status will change to defend once they have selected a first card*/
+var status = 'attack';
+var attackscore = 0;
+var defendscore = 0;
+var cardsleft = $('img').length;
+console.log('cardsleft ',cardsleft)
+console.log(status)
+$(function(){
+	/*When any img is clicked on, run this function*/
+	$('img').on('click', function(){
+		cardsleft = cardsleft-1;
+		console.log('cardsleft ',cardsleft);
+		console.log(score);
+		if (cardsleft < 1) {
+			//$('p').text('Stop clicking!')
+			$('h2').text('GAME OVER. '+username+', your score was '+score);
+		}
+		/*We need to first check if they're attacking or defending*/
+		if (status=='attack'){
+			console.log('attacking');
+			/*This line grabs the data-attack attribute of whatever has been clicked on (this). 
+			A better way of doing this would be to store those values in a dictionary*/
+			attackscore = $(this).attr('data-attack');
+			/*Because the attribute is actually a string, we need to use parseInt to turn it into a number*/
+			console.log(parseInt(attackscore));		
+			/*Then we add it to the score*/
+			console.log('score is ',score);
+			/*Put that score into the part of the sentence with a span id of 'userscore'*/
+			/*We fade out the instruction to click on a card to attack*/
+			$('p[class="step1"]').fadeOut(500);
+			$(this).fadeOut(1000);
+			/*Add some new instructions and fade in*/
+			$('p[class="step2"]').fadeIn(500).text('Click on the card you want to use to defend');
+			status = 'defend'
+		}
+		else if (status=='defend'){
+			console.log('defending');
+			defendscore = $(this).attr('data-defence');
+			console.log(parseInt(defendscore));
+			/*Because the attribute is actually a string, we need to use parseInt to turn it into a number*/	
+			/*Then we add it to the score*/
+			console.log(score);
+			/*Put that score into the part of the sentence with a span id of 'userscore'*/
+			/*Change the paragraph with the same data-sugar attribute
+			to show the text in brackets. The sugar variable is used both to select the right 
+			line, and fill a space in the sentence*/
+			/*Every click adds more sugar to their score, so if it goes past a certain level 
+			we then append some text to the heading*/
+			$('span[class="step1"]').fadeOut(500).delay(500).text('Click on the card you want to use to defend').fadeIn(500);
+			var won = parseInt(defendscore) < parseInt(attackscore);
+			console.log('is defence score '+parseInt(defendscore)+' less than attack score '+parseInt(attackscore))
+			console.log(won)
+			$(this).fadeOut(1000);
+			if (won==false) {
+				$('h2 span#result').text('You lost. ');
+				score = score-10;
+				console.log('lost, score is',score);
+				$('span#userscore').text(score);
+			}
+			else if (won==true) {
+				$('h2 span#result').text('You won. ');
+				score = score+10;
+				console.log('won, score is',score);
+				$('span#userscore').text(score);
+			}
+			else {
+				console.log('nothing happened')
+			}
+			$('p[class="step2"]').fadeOut(500);
+			$(this).fadeOut(1000);
+			/*Add some new instructions and fade in*/
+			$('p[class="step1"]').fadeIn(500).text('Click on the card you want to use to attack');
+			status = 'attack'
+		if (cardsleft < 3) {
+			//$('p').text('Stop clicking!')
+			$('span#userscore').text(score);
+		}
+			
+		}
+	});
+}); 
+
+}); 
+
+</script>
+
+</body>
+</html>
