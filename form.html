@@ -1,0 +1,56 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<style>
+
+</style>
+  </head>
+<body>
+<form>
+  First name:<br>
+  <input type="text" name="firstname" id="firstnm"><br>
+  Last name:<br>
+  <input type="text" name="lastname">
+  <input type="submit" value="Submit" id="submit">
+</form>
+<p class="button">CLICK!</p>
+<!--This div is populated with items from a list of JS objects (JSON) in the script-->
+<div id="list"></div>
+<!--this is a text-only version of the images
+<div class='joker' data-attack='90' id="attack"><p>The Joker</p></div>
+<div class='batman' data-defence='79' id="attack"><p>Batman</p></div>-->
+
+
+<script>
+/* Basic 'run when this document is ready' line for jQuery */
+$(document).ready(function(){
+console.log('jquery running!');
+/*Create a list of JS objects (dictionaries, one for each character)*/
+//TODO: Add other properties
+var firstname = $("input#firstnm").val();
+console.log(firstname);
+$('#submit').on('click', function(){
+	//this prevents the submit button automatically (default) submitting the form 
+	event.preventDefault();
+	//we only want to grab the value of the input id=="firstnm"
+	var firstname = $("input#firstnm").val();
+	//And show in console
+	console.log(firstname);
+});
+$('p.button').on('click', function(){
+	var firstname = $("input#firstnm").val();
+	console.log(firstname);
+	//a different way of doing this is to create a submit button which is actually not a form button
+	//However, if the user presses 'Enter' when filling out a form that also submits, 
+	//so event.preventDefault() is preferable
+	$('p.button').text('Your name is '+firstname);
+});
+
+}); 
+
+</script>
+
+</body>
+</html>
