@@ -67,13 +67,10 @@ jQuery is all about manipulating the **DOM**. DOM is an acronym for Document Obj
 
 In order to manipulate 'the DOM' we need some HTML tags to manipulate. So, add a simple heading and paragraph tag within your `<body>` tag like so:
 
-`<body>`
-
-`<h2>This is a heading</h2>`
-
-`<p>This is a paragraph.</p>`
-
-`</body>`
+> `<body>`
+> `<h2>This is a heading</h2>`
+> `<p>This is a paragraph.</p>`
+> `</body>`
 
 ## Adding the jQuery to change those HTML tags
 
