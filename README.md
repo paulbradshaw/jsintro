@@ -108,6 +108,8 @@ Once you have made those changes on your laptop (not online), save them and go o
 * Click on the 'commit to ...' button below
 * In the upper right corner will be a **Sync** button. Click this to sync with your online GitHub
 * In the same corner, just above, is a button which represents the **pull request**. Click on this to send a request to the original author of this file which you cloned - they can decide to merge your changes with their file.
+* 
+Note: you will need to be added as a **contributor** to a repository in order to make pull requests.
 
 ## Step 5 explore jQuery
 
