@@ -8,6 +8,16 @@ First, check out [the Codepen that this tutorial is based on](http://codepen.io/
 
 You can also find a [tutorial on Codepen for journalists here](https://docs.google.com/document/d/1EV_VxgCCH_czuaYoretoy_gUaO9pP4BwcSpiRRANbZQ/pub)
 
+## Quick tweaks
+
+You don't need to understand all the code to use it. Here are some simple changes you can make to adapt it for different purposes:
+
+* Change the image URL in line 8: `$('div.cctv').append('<img src="http://www.basildon.gov.uk/media/page_icon/n/i/CCTV.png" />');`
+* Change how much the cctv counter goes up in line 10: `cctvcount = cctvcount+1;`
+* Change `distance` in line 23 to a specific number so it only counts to that point: `for (i = 0; i < distance; i++){`
+* Change the speed at which the images appear by changing `200` in line 27: `setTimeout(addimage, i*200);`
+* Change line 8 so that it appends more than one image, or something else: `$('div.cctv').append('<img src="http://www.basildon.gov.uk/media/page_icon/n/i/CCTV.png" />');`
+
 ## The code
 
 There are two parts of code here:
@@ -185,17 +195,68 @@ Once again, this is empty at the moment, but we can fill it with what we want to
 
   `});`
 
+Now, forms actually present a problem for us if we want to run code on this page: that's because by default forms load or reload the page, putting us back where we started.
 
+To stop that happen we need to *prevent* that default action. `event.preventDefault();` [does just that](https://api.jquery.com/event.preventdefault/).
 
+With that sorted, let's add the code we want to run on clicking. First, we need to grab whatever value has been entered into the form:
 
-   //Stores the value of the text field as variable 'distance'
-var distance = $('input:text').val();
-  // Now we start a loop which runs the same number of times as the number in that variable
-  for (i = 0; i <distance; i++){
-    //Each time it runs it runs the addimage function detailed above
-    /* But it also sets a timeout which is the variable 1 * 1000, so the first time this loop runs the timeout is 1000, the second time 2000 and so on. The effect of this is that the function runs every 1000 miliseconds */
-    //see http://stackoverflow.com/questions/24849/is-there-some-way-to-introduce-a-delay-in-javascript
-setTimeout(addimage, i*200);
-    //NEEDS A FAILSAFE TO RESET AFTER BUTTON IS CLICKED - PERHAPS FADEOUT BUTTON
+`$('input:submit').click(function() {`
 
-  }
+  `event.preventDefault();`
+
+  `var distance = $('input:text').val();`
+
+  `});`
+
+This new line makes most sense when read from right to left. The new thing here is `.val` - the [val method](http://www.w3schools.com/jquery/html_val.asp) will fetch you the value in the selected element - in this case `$('input:text')`
+
+With that grabbed, it's then assigned to a new variable called `distance`. This is going to be used as part of the loop that follows.
+
+A **loop** is something that generally runs more than once (although strictly speaking it can run once or not at all). It starts with `for` and looks like this:
+
+  `for (i = 0; i < distance; i++){`
+
+    `}`
+
+Once again, all the action takes place between curly brackets. A `for` loop also has ingredients in parentheses: 3 of them.
+
+* The first - `i = 0` - creates a variable called `i` and sets it to 0 at the *start* of the loop.
+* The second - `i < distance` - specifies under what condition this loop should *continue*. Put another way, as long as the variable `i` is less than the variable `distance`, then this loop will continue to run.
+* The third part is basically how it gets from that start position to a position where it can stop (where that previous condition is *not* met). `i++` means `i` plus one. In other words, each time this loop runs, the value of i increases by one, or *increments*. (The `++` is what is known as an *increment operator*: other operators include *equals*, *greater than*, *plus* and so on).
+
+This is why we have defined that variable called `distance` before this `for` loop runs: it means we can use it to define a stop point for the loop.
+
+So, if someone types `20` into the form, and clicks submit, the code will grab that '20' and assign it to the variable `distance`. The loop will start with `i` at 0, increment by one each time it runs, but continue only as long as `i` is less than 20.
+
+In other words, in that case it would run 20 times (from `i` being 0 to being 19)
+
+Now all that just explains how the loop works: how it knows when to start and when to stop; and how the `distance` variable is used in that.
+
+But what does it *do* while it loops?
+
+Well, every time it loops, it runs just one line:
+
+`setTimeout(addimage, i*200);`
+
+That line uses `setTimeout` - a function which allows you to set a time delay before a piece of code runs. It has 2 ingredients: the code you want to run; and the delay in miliseconds.
+
+The code that is run *by* `setTimeout`, then, is the function we defined earlier: `addimage` (the one that uses `append` to add an image, increases the counter by one, and `text` to put that counter value in the text in the heading). If this loop runs 20 times then each time `addimage` runs that counter goes up by one, and by the end will be 20.
+
+The time delay is 200 miliseconds times the value of `i`. The first time this loop runs `i` is 0, so the code is delayed by 0 (0*200); the second time `i` is 1 so the code is delayed by 200; the third time `i` is 2 so the delay is 400 (2*200) and so on.
+
+Why do we need different delays? One explanation is to imagine that function running 20 times, but all at once. Using `setTimeout` within a loop allows us to set 20 different delays, so although they all 'start' at the same time, their delays are different. ([read more here](http://stackoverflow.com/questions/24849/is-there-some-way-to-introduce-a-delay-in-javascript))
+
+When placed within the `for` loop it looks like this:
+
+`for (i = 0; i < distance; i++){`
+
+  `setTimeout(addimage, i*200);`
+
+  `}`
+
+## What next?
+
+This code has some flaws. For example, once it has run the first time people can click again and the `cctvcount` variable continues from where it left off before.
+
+Also, at the moment the form asks for distance but the code shows CCTV cameras. We could add a calculation of 'cameras per mile' to convert that distance into cameras.
