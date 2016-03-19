@@ -57,26 +57,71 @@ Because we're using jQuery, we begin with the standard []'document ready' functi
 
 All the other code now goes between that first line, and the closing `});`
 
-First, then, a simple `console.log` command that we can view in the Inspector 
+First, then, a simple `console.log` command that we can view in the [Inspector console](https://developer.chrome.com/devtools/docs/console)
 
 `$(document).ready(function(){`
+
 `console.log('jquery running!');`
+
   `});`
 
+Now, if we're going to count anything we need to store that number somehow. That means creating a *variable* to store it, which we do in the next line. We call that variable `cctvcount`
+
+`$(document).ready(function(){`
+
+`console.log('jquery running!');`
+
+`var cctvcount = 0;`
+
+  `});`
+
+That number starts at zero, but we want to change that number. And because we want to do that more than once, it's a good idea to create a *function* for that. Creating a function means we don't have to write the same code ('add one to this number') over and over again; we just write it once and *run* that function over and over again.
+
+A function is created with `function` followed by the name you want to give to it, any ingredients in parentheses, and finally, in curly brackets, what the function actually does.
+
+Here are some lines that create a function: this one is called `addimage` and it has no ingredients (the parentheses are empty) and no actions (the curly brackets are also empty)
+
+`function addimage(){`
+
+  `}`
+
+Let's start adding some actions inside those curly brackets:
+
+`function addimage(){`
+
+`cctvcount = cctvcount+1;`
+
+  `}`
+
+Here we change the variable `cctvcount` to be `cctvcount` plus one. That's nice, but it would be useful to display that new count somehow:
+
+`function addimage(){`
+
+`cctvcount = cctvcount+1;`
+
+`console.log(cctvcount);`
+
+`$('span#userscore').text(cctvcount);`
+
+  `}`
+
+We can display it to ourselves in the console using `console.log`. But we can also change the HTML on the page to show it.
+
+The code `$('span#userscore')` *selects* `<span id="userscore">` and turns it into a jQuery 'object' by using the `$` method (this just means 'jQuery').
+
+Now it is a jQuery object we can use jQuery commands - in this case `.text`.
+
+The [.text method](https://api.jquery.com/text/) allows you to change the text inside a HTML element (in this case, that `<span id="userscore">`)
+
+What you want to change that text to is placed inside parentheses like so: `.text(cctvcount)`
+
+`cctvcount` is a variable, so it grab the value of that variable and put that where we've specified.
 
 
-  /* set a variable which will be displayed and change as the code runs later */
-  var cctvcount = 0;
-  /* Create a function to add an extra CCTV camera image to the div class='cctv' */
-function addimage(){
   $('div.cctv').append('<img src="http://www.basildon.gov.uk/media/page_icon/n/i/CCTV.png" />');
-  /* This also adds 1 to the cctv variable */
-    cctvcount = cctvcount+1;
-  /* and shows it in console */
-console.log(cctvcount);
-  /* Then changes the text in span id=userscore */
-    $('span#userscore').text(cctvcount);
-}
+
+
+
   // This runs when <input> element is clicked
  $('input:submit').click(function() {
    //This stops the default action of a form (reload page)
