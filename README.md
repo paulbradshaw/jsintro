@@ -1,6 +1,6 @@
 # JS intro
 
-This repository has some basic files which you can **clone**, add to, and then add back in to the repository using a **pull request**.
+This repository has some basic files which you can **clone** or **fork**, add to, and then add back in to the repository using a **pull request**.
 
 They provide a useful introduction to JavaScript, but also to collaborating on a project using GitHub.
 
@@ -17,7 +17,9 @@ Before starting, make sure you have the following:
 
 Log in to GitHub and go to the repository at [https://github.com/paulbradshaw/jsintro](https://github.com/paulbradshaw/jsintro)
 
-Click on the *clone* button in the upper right corner: it looks like a TV/monitor with a downward arrow. You can find it next to the **Download ZIP** button.
+Click on the *fork* button in the upper right corner to add it to your own GitHub.
+
+Then, in your new, forked, version of this repo click on the **clone or download** button: it looks like a TV/monitor with a downward arrow. You can find it next to the **Download ZIP** button.
 
 ![](https://raw.githubusercontent.com/paulbradshaw/jsintro/master/clone.png)
 
