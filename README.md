@@ -37,7 +37,8 @@ This should contain all the files from the repository you just cloned. You can n
 
 There is a HTML file in the repository. Here is the main section:
 
-`<p id='showme'>0</p>
+```html
+<p id='showme'>0</p>
 <img src="http://www.breederretriever.com/photopost/data/591/Picture_126_640x480.jpg" id="empty" onclick="potato()">
 <script>
 var score = 0;
@@ -46,7 +47,8 @@ score = score+1;
 var image = document.getElementById('empty');
 document.getElementById('showme').innerHTML = score;
 }
-</script>`
+</script>
+```
 
 
 This has a small amount of HTML, and some JavaScript within `<script>` tags. Open this file on your local machine using a text editor like TextEdit or Notepad. It's useful to download a better text editor like [TextWrangler](http://www.barebones.com/products/textwrangler/).
@@ -110,7 +112,7 @@ Once you have made those changes on your laptop (not online), save them and go o
 * Click on the 'commit to ...' button below
 * In the upper right corner will be a **Sync** button. Click this to sync with your online GitHub
 * In the same corner, just above, is a button which represents the **pull request**. Click on this to send a request to the original author of this file which you cloned - they can decide to merge your changes with their file.
-* 
+
 Note: you will need to be added as a **contributor** to a repository in order to make pull requests.
 
 ## Step 5 explore jQuery
