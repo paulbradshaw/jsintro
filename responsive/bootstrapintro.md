@@ -52,7 +52,7 @@ First, then, [go to the page with the Jumbotron example](http://getbootstrap.com
 
 Start copying from just under the `<body>` tag, and copy everything until the closing `</body>` tag.
 
-Now paste that code between your own `<body>` and `</body>` tags. 
+Now paste that code between your own `<body>` and `</body>` tags. Commit changes, and switch to your GitHub Pages version to see if it's worked (you will need an internet connection).
 
 In case there's any doubt, here is that code in full:
 
@@ -119,4 +119,8 @@ In case there's any doubt, here is that code in full:
        </div> <!-- /container -->
 ```
 
-### Step 4: Adapt the code
+## Step 4: Adapt the code
+
+Now you have a direct copy of the Jumbotron page. But you want to adapt that to your own content. Here's how:
+
+
