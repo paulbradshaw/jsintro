@@ -116,6 +116,7 @@ In case there's any doubt, here is that code in full:
       <footer>
         <p>&copy; 2016 Company, Inc.</p>
       </footer>
+       </div> <!-- /container -->
 ```
 
 ### Step 4: Adapt the code
