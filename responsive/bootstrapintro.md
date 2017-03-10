@@ -123,4 +123,68 @@ In case there's any doubt, here is that code in full:
 
 Now you have a direct copy of the Jumbotron page. But you want to adapt that to your own content. Here's how:
 
+The page consists of a number of elements. These can be broken down like so:
 
+* The navigation, which begins with `<nav class="navbar navbar-inverse navbar-fixed-top">` and ends with `</nav>`
+* The main title and text area at the top of the page, which begins with `<div class="jumbotron"> <div class="container">` and ends with `</div> </div>` 
+* The columns of text, which begin with `<div class="container"> <div class="row">` and ends with `</div> </div>`
+
+The title area can be customised by just changing the text inside tags like `<h1>` (heading) and `<p>` (paragraph). The text across the top of the navigation can also be changed by changing the text between `<a class="navbar-brand" href="#">` and `</a>`. 
+
+I'm going to focus instead on how the columns work, because that's the most interesting bit.
+
+### Changing the width of columns
+
+Each row on your page is created by the HTML tag `<div class="row">`
+
+Within each row are several tags like this: `<div class="col-md-4">`. The number 4 in that tag controls the width of the area that text in that tag can occupy. Specifically, it refers to the number of columns used, within a 12-column grid. Let me explain...
+
+Imagine the page is divided up into 12 equal columns. Those 12 columns can be used to order content in a number of ways:
+
+* You can have one very wide 12-column-wide box which takes up the entire page
+* You can have two 6-column-wide boxes, each of which takes up half of the page
+* You can have three 4-column-wide boxes
+* You can have four 3-column-wide boxes
+* You can have two 3-column-wide boxes *and* one 6-column wide boxes
+* You can have three 3-column-wide boxes filled with text *and* one 3-column-wide box which is left empty to create some white space
+* Or you can come up with dozens of other combinations
+
+The first `<div class="row">` contains three `<div class="col-md-4">` tags: in other words, three boxes, each of which is 4 columns wide.
+
+Try changing the number to 3 in just one and see what happens.
+
+You should now have one box with is 3 columns wide, two which are still 4 columns wide, and that leaves a 12th column empty.
+
+Try making all three of them 3, and then adding a new fourth `<div class="col-md-4">` tag (don't forget the closing `</div>` too) to create an extra box of text.
+
+That is how you can create custom layouts using the Bootstrap framework. But they're also responsive...
+
+### Showing how the page responds in a different size window
+
+The quickest way to test a responsive layout is to resize the browser window. Make sure you are on the published page, and click the right edge of your browser to start resizing the window. As you drag the right edge further and further in (making the browser more and more narrow) you should see the columns become more and more narrow too: they are *responding* to the change in width by adjusting their size proportionally.
+
+However, when the width reaches a certain point, something else happens: the layout shifts from three boxes of text across each row (or four if you changed it), to just the one.
+
+This is because, when viewed on a mobile device with a width like this, Bootstrap decides to run each block of text under each other, rather than trying to generate columns of text on a tiny screen.
+
+### Images and 100% width
+
+As well as text you can of course add images or embedded media like video and audio players or maps. If you do this there's a useful tip to keep those responsive as well: set the `width` property to `100%`. Here's an example:
+
+`<img src="http://petplays.co.uk/wp-content/uploads/2013/06/Vocalizations-and-ear-movements-of-a-cat-tips.png" width="100%" style="margin:20px 0px"/>`
+
+When the image tag includes `width="100%"` it takes up the width of the `div` block (not the entire page). This means as the div gets resized, so the width of the image does too. You can [see an example I created here](https://paulbradshaw.github.io/jsplay/bootstrap.html). 
+
+Note that I've also added `style="margin:20px 0px"` to create a small margin of breathing space around the image too. This isn't the best way to do it - it would be better to add a CSS style to apply to all images, earlier in the page or in a separate CSS file. But I've done it this way so you can see why it has a margin.
+
+Here's another example of setting the width property on the embed code for an YouTube video:
+
+`<iframe width="100%" height="315" src="https://www.youtube.com/embed/pe5NrtuhX-g" frameborder="0" allowfullscreen></iframe>`
+
+In this case YouTube will give you embed code that already has the width set. You need to make sure you change that from a pixel setting (like `500`) to a percentage setting as shown above.
+
+Note also, however, that if you do this you may end up with videos which are cropped into a vertical format - useful if your video is also vertical, but if you want to avoid this, use wider columns or stick to a fixed width.
+
+The same technique can be used for iframe embed codes for maps and audio players too.
+
+That should get you started with using a basic responsive framework. It's now up to you to customise it further, and learn more about Bootstrap and [its other examples](http://getbootstrap.com/getting-started/#examples) and [components](http://getbootstrap.com/components/).
