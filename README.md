@@ -11,7 +11,7 @@ Before starting, make sure you have the following:
 * An account on GitHub
 * You have downloaded and installed GitHub on your local machine (laptop, whatever)
 * When setting up GitHub on your own machine it will create a folder to store your GitHub *repositories* (sub-folders and files). Make sure you know where that folder is (you will be asked where you want to put it, generally in Documents).
-* You might also prefer to download a decent text editor like [TextWrangler](http://www.barebones.com/products/textwrangler/) rather than using your computer's own default text editor.
+* You might also prefer to download a decent text editor like [Atom](https://atom.io/), [Sublime Text](https://www.sublimetext.com/) or [TextWrangler](http://www.barebones.com/products/textwrangler/) rather than using your computer's own default text editor.
 
 ## Step 1: Clone the repository
 
