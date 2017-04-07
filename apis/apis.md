@@ -102,30 +102,58 @@ Thankfully, the comments describe exactly what happens in this code:
 ```
 
 Specifically, `$(tracks)` turns `tracks` into a jQuery ‘object’ that we can then use jQuery code on. Now, because our URL contained a list of tracks in JSON, ‘tracks’ is a list, so we need to ‘iterate’ through it.
-We do that with .each - again, more detail can be found in the jQuery documentation. This runs a function on each item, and creates the variables ‘index’ and ‘track’ to do that.
-Whereas tracks was a list, track is the name for an individual item from that list (hence the name - although again this can be anything).
-The next lines of code - within this new function - do their work with each ‘track’ as it loops.
+
+We do that with `.each` - again, more detail [can be found in the jQuery documentation](https://api.jquery.com/each/). This runs a function on each item, and creates the variables ‘index’ and ‘track’ to do that.
+
+Whereas `tracks` was a list, `track` is the name for an individual *item* from that list (hence the name - although again this can be anything).
+
+The next lines of code - within this new function - do their work with each `track` as it loops.
+
+```javascript
       //Use console log to show track name
       console.log(track);
-This part uses the console to check the JavaScript as it runs. You won’t see this unless you’re using those methods of checking your code (more on that here) so you could delete this and it won’t stop the code working.
+```
+
+This part uses the console to check the JavaScript as it runs. You won’t see this unless you’re using those methods of checking your code ([more on that here](https://stackoverflow.com/questions/4539253/what-is-console-log)) so you could delete this and it won’t stop the code working.
+
+```javascript
       // .soundcloud is class="soundcloud" - target as jquery object
       $('.soundcloud').append
-This part refers to part of our HTML for the first time. Specifically, it is going to affect<table class="soundcloud"> in the HTML (because it has class specified) and it is going to use .append to add something to that table, detailed in the parenthesis following (more on append here):
+```
+
+This part refers to part of our HTML for the first time. Specifically, it is going to affect `<table class="soundcloud">` in the HTML (because it has `class` specified) and it is going to use `.append` to add something to that table, detailed in the parenthesis following ([more on append here](https://api.jquery.com/append/)):
+
+```javascript
 ($('<tr class="row"><td><a href="'+track.permalink_url+'">'+track.title+'</a></td><td>'+track.playback_count+'</td>'+'<td>'+track.download_count+'</td>'+'<td>'+track.user.username+'</td></tr>'))
+```
+
 You can see a lot of HTML being appended here - a new table row, a new cell, and then a link.
-After that HTML - in the middle of the link comes +track.permalink_url+ - the plus signs add something new to our string of characters. And what it adds is the ‘permalink_url’ part of the ‘track’ being looped through. This is followed by more HTML for further cells, and other properties of ‘track’ - playback_count, download_count and user.username.
-You can find these in the URL that is the basis of all of this. For more on JSON see this guide for journalists which also explains why the username in our data has to be grabbed by going ‘through’ user.
+
+After that HTML - in the middle of the link comes `+track.permalink_url+` - the plus signs add something new to our string of characters. And what it adds is the ‘permalink_url’ part of the `track` being looped through. This is followed by more HTML for further cells, and other properties of `track` - `playback_count`, `download_count` and `user.username`.
+
+You can [find these in the URL that is the basis of all of this](https://api.soundcloud.com/tracks.json?client_id=6c9ad53bd0efd615011ad33581905b79). For more on JSON [see this guide for journalists](https://onlinejournalismblog.com/2011/04/14/data-for-journalists-json-for-beginners/) which also explains why the username in our data has to be grabbed by going ‘through’ `user`.
+
 Put together, that last bunch of code essentially creates a new row of HTML, with four cells: a linked title, a playback count, download count and username. The row is appended to our previously empty table.
-And remember that code runs for every track in tracks, so we get a row appended for each track until the list is exhausted.
-All that is left after that is to close the parentheses on the various functions that have been created, because they’re all nested within each other - first our function in each, then our function in get, and finally the very first function we created, in ready:
+
+And remember that code runs for every track in `tracks`, so we get a row appended for each `track` until the list is exhausted.
+
+All that is left after that is to close the parentheses on the various functions that have been created, because they’re all nested within each other - first our function in `each`, then our function in `get`, and finally the very first function we created, in `ready`:
+
+```javascript
     }); //Close function
     }); //Close get
 }); //Close document ready
-Adapting the code for the Police API
+```
+
+## Adapting the code for the Police API
 
 You don’t have to entirely understand the code above to adapt it for another API. But it does provide a useful starting point for exploring JavaScript and jQuery.
+
 Here is the same code adapted for the Police API, on CodePen at http://codepen.io/paulbradshaw/pen/pitHe
+
 Below is the adapted code in full:
+
+```javascript
 $(document).ready(function() {
  //Start get - URI and callback function
   $.get("http://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2013-01", function(tracks){
@@ -142,26 +170,45 @@ $(document).ready(function() {
     }); //Close function
     }); //Close get
 }); //Close document ready
+```
+
 Most of this is explained for the previous example, so I’ll just explain the changes:
+
+```javascript
 $(document).ready(function() {
  //Start get - URI and callback function
   $.get("http://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2013-01", function(tracks){
-The first change is the URL being used with get. This is a URL from the Police API - it’s actually an example URL from the documentation for a request for crimes at a particular location and date. We know this works (test it in a browser like Chrome) and can always change it later.
+```
+
+The first change is the URL being used with `get`. This is a URL from the Police API - it’s actually an example URL [from the documentation](https://data.police.uk/docs/method/crime-street/) for a request for crimes at a particular location and date. We know this works (test it in a browser like Chrome) and can always change it later.
+
+```javascript
     // Define what the function does
     //tracks is made into Jquery object, .each loops through, performs new function
     // Start 'for each' loop. Run function naming variable 'crime' and index as 'index'
     $(tracks).each(function(index, crime){
-Our second change (aside from the comments) is in naming each item in our list ‘crime’. Notice, however, that we didn’t change ‘tracks’. Again, these are arbitrary names for variables the code is creating, so it doesn’t matter what they’re called, apart for the purposes of clarity. So we could have left ‘track’ as it was.
+```
+
+Our second change (aside from the comments) is in naming each item in our list `crime`. Notice, however, that we didn’t change `tracks`. Again, these are arbitrary names for variables the code is creating, so it doesn’t matter what they’re called, apart for the purposes of clarity. So we could have left `track` as it was.
+
+```javascript
       //Use console log to show crime name
       console.log(crime);
       // there's a second URL with crime outcome details, e.g.
       // http://data.police.uk/api/outcomes-for-crime/eb643ba6cd4ea4d2630ac1ad6b8b42036faafee3a45767128110765de04d8f3c
       // .crimes is class="crimes" - target as jquery object
       $('.crimes').append
-This time our HTML table uses class=”crimes” so we’ve adapted the code accordingly to append code to that.
+```
+
+This time our HTML table uses `class="crimes"` so we’ve adapted the code accordingly to `append` code to that.
+
+```javascript
 ($('<tr class="row"><td><a href="http://data.police.uk/api/outcomes-for-crime/'+crime.persistent_id+'">'+crime.category+'</a></td><td>'+crime.location.latitude+","+crime.location.longitude+'</td>'+'<td>'+crime.location.street.name+'</td>'+'<td>'+crime.persistent_id+'</td></tr>'))
+```
+
 The most significant change is in how we identify the data we want from the URL. The JSON at that URL uses ‘category’ and ‘persistent_id’, but it also has latitude and longitude nested a little deeper inside a ‘location’ category, and there’s a street name buried even deeper (‘name’ within ‘street’ within ‘location’).
-Adapting for another API
+
+## Adapting for another API
 
 Knowing this you should be able to use the same code for another API by only changing the following:
 Change the URL to a URL on the other API
