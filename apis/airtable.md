@@ -4,6 +4,8 @@
 
 You can also access that data from the website, and via an API.
 
+First, you need to upload your data. You can do this, once logged in, by creating a new database from the homepage (click on **New Base** and select *Import a spreadsheet*). Now to find the API for that database...
+
 ## Airtable's API documentation
 
 You access the Airtable APIs at [airtable.com/api](https://airtable.com/api). If you're logged in you will see an API for each database you're maintaining on Airtable. Click on any one of them to see the documentation for that API - very cleverly, it personalises the documentation so the example code relates to the fields and tables in your database.
@@ -35,3 +37,6 @@ The API is used by forming URLs to request information from the database. The st
 * You can add other arguments to your query, for example: `&maxRecords=1` will limit the results to the number specified. Other arguments include `sort` and `fields`: the documentation will give more details.
 
 Try out some URLs using the guidance above and the documentation. You should be able to see the contents of your database in JSON format.
+
+## Putting it into JavaScript
+
