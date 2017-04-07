@@ -43,11 +43,11 @@ $(document).ready(
 
 to this:
 
-```jQuery(document).ready(```
+`jQuery(document).ready(`
 
 Note that **the Q in jQuery needs to be upper case**, or it won’t work. Finally, change it back:
 
-```$(document).ready(```
+`$(document).ready(`
 
 This first part of the code is called the *ready event*. This readies the document for a jQuery function. You can find out more about this in [Codecademy’s introduction to jQuery](https://www.codecademy.com/courses/web-beginner-en-bay3D/0/1?curriculum_id=50a3fad8c7a770b5fd0007a1), and in the [official ‘learning centre’ for jQuery here](https://learn.jquery.com/using-jquery-core/document-ready/). jQuery’s ‘About’ section also [explains it here](https://learn.jquery.com/about-jquery/how-jquery-works/).
         
@@ -121,7 +121,7 @@ This part uses the console to check the JavaScript as it runs. You won’t see t
       $('.soundcloud').append
 ```
 
-This part refers to part of our HTML for the first time. Specifically, it is going to affect `<table class="soundcloud">` in the HTML (because it has `class` specified) and it is going to use `.append` to add something to that table, detailed in the parenthesis following ([more on append here](https://api.jquery.com/append/)):
+This part refers to part of our HTML for the first time. Specifically, it is going to affect `class="soundcloud">` in the HTML (because it has `class` specified) and it is going to use `.append` to add something to that table, detailed in the parenthesis following ([more on append here](https://api.jquery.com/append/)):
 
 ```javascript
 ($('<tr class="row"><td><a href="'+track.permalink_url+'">'+track.title+'</a></td><td>'+track.playback_count+'</td>'+'<td>'+track.download_count+'</td>'+'<td>'+track.user.username+'</td></tr>'))
@@ -211,22 +211,37 @@ The most significant change is in how we identify the data we want from the URL.
 ## Adapting for another API
 
 Knowing this you should be able to use the same code for another API by only changing the following:
-Change the URL to a URL on the other API
-Change the references inside the append code so that they point to the relevant attributes in that API’s JSON (the attribute is the description of the data, e.g. ‘category’, ‘longitude’)
-Change the class targeted if your HTML uses a different class or ID - or more simply, make sure your HTML table has the same class as in the code above
-To place that JavaScript in a standard HTML webpage:
+
+* Change the URL to a URL on the other API
+* Change the references inside the append code so that they point to the relevant attributes in that API’s JSON (the attribute is the description of the data, e.g. ‘category’, ‘longitude’)
+* Change the class targeted if your HTML uses a different class or ID - or more simply, make sure your HTML table has the same class as in the code above
+
+## To place that JavaScript in a standard HTML webpage:
 
 With CodePen you can see instantly below if the code works. However, to get that in a live webpage you need to put the code in one or more files.
-First, in a simple text editor such as Notepad (not Word), copy the HTML part of the code into a new document. You will need to add opening and closing tags for <html>, <head> and <body> because CodePen doesn’t require these.
+
+First, in a simple text editor such as Notepad (not Word), copy the HTML part of the code into a new document. You will need to add opening and closing tags for `<html>`, `<head>` and `<body>` because CodePen doesn’t require these.
+
 Save it in a new folder you can easily find and give it a name with the extension .html
-Read the Introductory guide to CodePen and JavaScript on turning what’s in Codepen to a live, working webpage.
+
+[Read the Introductory guide to CodePen and JavaScript](https://docs.google.com/document/d/1EV_VxgCCH_czuaYoretoy_gUaO9pP4BwcSpiRRANbZQ/pub) on turning what’s in Codepen to a live, working webpage.
+
 In this case, you need to make sure that this HTML file loads jQuery, so somewhere in the <head> area you should have the following:
+
+```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
 </script>
-You also need to make sure it loads the JavaScript you’ve adapted, so copy that into a new file using the same simple text editor and saving in the same folder with the extension .js
+```
+
+You also need to make sure it loads the JavaScript you’ve adapted, so copy that into a new file using the same simple text editor and saving in the same folder with the extension `.js`
+
 Then return to your HTML document and link to that new file with a script near the end of your <body> section like so:
-<script src="script.js"></script>
+
+`<script src="script.js"></script>`
+
 The code in full might look something like this in your HTML file:
+
+```html
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
@@ -243,8 +258,12 @@ The code in full might look something like this in your HTML file:
 </table>
 <script src="script.js"></script>
 </body>
-</head>
+</html>
+```
+
 And like this in your script.js file:
+
+```javascript
 $(document).ready(function() {
  //Start get - URI and callback function
   $.get("http://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2013-01", function(tracks){
@@ -261,7 +280,12 @@ $(document).ready(function() {
     }); //Close function
     }); //Close get
 }); //Close document ready
+```
+
 If you open the HTML file in your browser (use CTRL+O and locate it) it should work.
+
 If it works on your machine like this you should be ready to upload it to some live webspace.
+
 Ideally you should have some yourself, bought through a hosting provide like GoDaddy or BlueHost, and where you already run a Wordpress-based site. Free webspace providers like Wix often have limitations on JavaScript - not to mention looking much less professional. But you may find one which works for you (if so, let me know!).
+
 You can host the JavaScript on a service like http://yourJavaScript.com/ which may address some problems.
