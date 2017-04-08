@@ -40,3 +40,21 @@ Try out some URLs using the guidance above and the documentation. You should be 
 
 ## Putting it into JavaScript
 
+You can [find an example on CodePen of an Airtables API being used within JavaScript](https://codepen.io/paulbradshaw/pen/evwdwj). Note that I've used placeholder text 'PUTYOURKEYHERE' in one line: `var querywspaces = 'PUTYOURKEYHERE'+'/Relevant%20Articles?maxRecords=10&view=Main%20View&api_key=key4UuqaLLNOXulLR'`
+
+You will need to replace that with your own key as explained above.
+
+Likewise you will need to adapt the part which grabs the data:
+
+```javascript
+  'columns' : [
+    { 'data' : 'fields.Title'},
+    { 'data' : 'fields.Link'},
+    { 'data' : 'fields.Date'},
+    { 'data' : 'fields.Article Favorability'},
+    { 'data' : 'fields.Article Emphasis'}
+```
+
+In the example above, in the JSON file in the branches after `records`, the names of the branches are `fields` and then within that `Title` and so on. But your database may use different names for fields. Use the JSONView Chrome plugin and hover over each part to see what the path is. As you do, you'll see the path shown in the bottom left corner as in the image below (the cursor isn't shown, but it's hovering over 'Scorer')
+
+![](https://raw.githubusercontent.com/paulbradshaw/jsintro/master/apis/jsonviewhover.png)
