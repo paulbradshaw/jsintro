@@ -174,7 +174,7 @@ function rightAnswer() {
   }
 ```
 
-Now this isn't the most efficient way to do things: we should really think of a way to avoid duplicating the same code. But that would involve more complex code and at this point the main objective is to get to grips with the process of triggering events with a click.
+Now this isn't the most efficient way to do things: we should really think of a way to avoid duplicating the same code (which we'll do later). At this point the main objective is to get to grips with the process of triggering events with a click.
 
 ## Keeping a score
 
@@ -230,11 +230,19 @@ Now with just one question a score isn't that much use. But to have a quiz with 
 
 ## What do we know?
 
-* `onclick` is an *event handler* which is used as an attribute of a HTML tag. The *value* of that attribute (whatever comes after the `=` is the name of the function that should run when someone clicks on the HTML button, text or other object)
+* `onclick` can be used to run a *function* when something is clicked: it is called an *event handler* because it handles the 'event' of something being clicked. `onclick` is used as an attribute of a HTML tag. The *value* of that attribute (whatever comes after the `=` is the name of the function that should run when someone clicks on the HTML button, text or other object).
+* You can now write a function in your code that runs when `onclick` is triggered
+* `getElementById` is one of a number of ways to target an element in your HTML page. We used it to add extra text detailing the answer to a question and the user's result.
+* `textContent` can be used to replace the text contents of the HTML tag or tags targeted (it can also be used to *get* the text contents, but that's another story)
+* `innerHTML` can be used to insert new HTML into a tag or tags targeted. We used it to add extra formatting and an image.
+* Variables can be used to store and change a user's score - and then display those back in the HTML page
+* Passing **arguments** to a function with `onclick` means we can test those and/or include those in the newly generated HTML
+* An `if` test can be used to test that argument and run extra lines of code (such as increasing the score variable) if the test is met.
 
 ## Tasks
 
 * Although we have used `onclick` inside the `<input>` tag which happens to create a clickable button, it can be used on other HTML tags as well. Try using it on the `<h1>` tag by changing it to `<h1 onclick="giveAnswer()">`. Why would we normally want to avoid using it with a text tag, however?
+
 
 ## Further reading
 
