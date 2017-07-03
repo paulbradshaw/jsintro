@@ -196,6 +196,42 @@ Instead of one string, `innerHTML` now assigns two strings, and in the middle of
 
 Alternatively, we could choose to display the score somewhere else, and add a separate line of code changing the `innerHTML` of that element.
 
+### Passing information to the function - and reducing to one function
+
+So far we have left the parentheses empty after the function name, and created different functions for a wrong and right answer. But we can use that parenthesis to specify whether the answer was wrong or right, and then generate code based on that.
+
+Here, then, is the HTML code for the buttons - but altered so that the function (now called `testAnswer`) is *passed* a value: `'Wrong'` or `'Correct'`:
+
+```html
+<input type="button" onclick="testAnswer('Wrong')" value="15" />
+   <input type="button" onclick="testAnswer('Wrong')" value="1" />
+   <input type="button" onclick="testAnswer('Correct')" value="6" />
+```
+
+The JavaScript now can be altered as follows:
+
+```js
+var userScore = 0;
+function testAnswer(result) {
+if (result == 'Correct'){
+userScore = userScore + 1;     
+};
+  document.getElementById('changeme').innerHTML = "<p><strong>"+result+"</strong>! Your score is "+userScore+"<em>. Six all-female acts have headlined the main stage. They are Adele, Beyonce, Florence and the Machine, Shakespear's Sister, Suzanne Vega and Sinead O'Connor.</em></p><img src='https://c2.staticflickr.com/4/3048/2587025047_1274a14322_o.jpg' alt='Some rights reserved by kellywritershouse'>"
+  }
+```
+
+The value that is passed to this function is stored in a variable we call `result`. The first part of the function then tests that value using `if`. If `result == 'Correct'` then the `userScore` variable is increased by one.
+
+The next part now not only inserts the user's score variable into the HTML, but also the text that was passed and stored as the variable `result`.
+
+If the user clicked a button that passed 'Wrong' to the function as `result`, then that is inserted when the HTML is changed by the function. If they passed 'Correct', then that is used again. And it also meets the `if` test which means the score will have been increased too.
+
+Now with just one question a score isn't that much use. But to have a quiz with more than one question we'll need to develop some new skills. First, let's summarise the key points from this chapter.
+
+## What do we know?
+
+* `onclick` is an *event handler* which is used as an attribute of a HTML tag. The *value* of that attribute (whatever comes after the `=` is the name of the function that should run when someone clicks on the HTML button, text or other object)
+
 ## Tasks
 
 * Although we have used `onclick` inside the `<input>` tag which happens to create a clickable button, it can be used on other HTML tags as well. Try using it on the `<h1>` tag by changing it to `<h1 onclick="giveAnswer()">`. Why would we normally want to avoid using it with a text tag, however?
