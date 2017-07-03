@@ -242,8 +242,9 @@ Now with just one question a score isn't that much use. But to have a quiz with 
 ## Tasks
 
 * Although we have used `onclick` inside the `<input>` tag which happens to create a clickable button, it can be used on other HTML tags as well. Try using it on the `<h1>` tag by changing it to `<h1 onclick="giveAnswer()">`. Why would we normally want to avoid using it with a text tag, however?
+* Add another question to the quiz (you can [take an example from here](http://www.bbc.co.uk/news/uk-england-40388067)). You will need to duplicate the question heading, text and form - but what else will you need to change?  
 
 
 ## Further reading
 
-[A discussion of `onclick` versus `click()` is here](https://stackoverflow.com/questions/12627443/jquery-click-vs-onclick)
+Although we used `onclick` here, it's actually much more common for developers to use the jQuery event handler `.click`. [A discussion of `onclick` versus `click()` is here](https://stackoverflow.com/questions/12627443/jquery-click-vs-onclick), but we'll come onto it in later chapters.
