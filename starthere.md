@@ -80,12 +80,12 @@ This function is now ready to be used. A function is called by its name, with in
 In the example above, the function just triggers an event. Sometimes, however, you need to store the result of a function. In this case the function needs to `return` a value to whatever called it. For example:
 
 ```js
-function doubleNumber(numtodouble){
+function DoubleNumber(numtodouble){
   console.log(numtodouble * 2);
   return numtodouble * 2;
   }
 
-var storingNumber = doubleNumber(2);
+var storingNumber = DoubleNumber(2);
 ```
 
 Here the function `doubleNumber` *returns* the result of something being doubled. This is stored in the variable `storingNumber` which called the function.
