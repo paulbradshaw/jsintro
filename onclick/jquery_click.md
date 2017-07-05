@@ -56,13 +56,16 @@ Now we need some HTML that's going to be affected by this JavaScript:
 <h1>Make me disappear too</h1>
 ```
 
-A> The function does not need to be defined *within* the `click()` method, however. Another way of writing the same code might look like this:
-A>
-A> ```js
-A> var slideme = function() {$(this).slideUp()};
-A> $("h1").click(
-A>   slideme
-A>              )
-A> ```
-A>
-A> Here the function is defined in the first line, before being called within the `click` method.
+
+## Tasks
+
+The function does not need to be defined *within* the `click()` method. Another way of writing the same code might look like this:
+
+```js
+var slideme = function() {$(this).slideUp()};
+$("h1").click(
+  slideme
+             )
+```
+
+Here the function is defined in the first line, before being called within the `click` method. Try this with your own code.
