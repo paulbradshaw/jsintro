@@ -227,6 +227,40 @@ $(document).ready(
 )
 ```
 
+### Expanding the quiz to two questions
+
+We can add a second question using similar HTML like so:
+
+```html
+<div class="question">
+<h3>Question 2:</h3>
+<p>Only one African-born artist has headlined the main stage. Who was it?<p>
+<ul>
+  <li class="button" data-result="Wrong">Salif Keita</li>
+  <li class="button" data-result="Correct">Youssou N'Dour</li>
+  <li class="button" data-result="Wrong">Khaled</li>
+</ul>
+</div>
+```
+
+Because the same classes and `data-result` attributes are used this should work in the same way: the `$("li.button").click()` code will be triggered when any answer is clicked, the result selected, score changed, and question section faded out.
+
+There is just one thing that will be left to change: the answer. The problematic piece of code is this:
+
+```js
+"<p><strong>"
++result+
+"</strong>! Your score is "
++userScore+
+"<em>. Six all-female acts have headlined the main stage. They are Adele, Beyonce, Florence and the Machine, Shakespear's Sister, Suzanne Vega and Sinead O'Connor.</em></p>"
+```
+
+The code currently includes the answer for question 1, with the result and score pulled from variables. We need to treat the *answer* as a third variable - and we need to know which *question* was being answered in order to select the right one. Have a think about how to solve that problem before we move on to solve it.
+
+## Tasks
+
+* 
+
 
 ## Extra tips and warnings
 
