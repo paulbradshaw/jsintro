@@ -6,15 +6,18 @@
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-  var slideme = function() {
-    $(this).slideUp();
-    console.log("slideme1")
-                           };
-  $("h1").click(
-    console.log("slideme")
-               )
+  $(document).ready( //open the (document).ready
+    function()	{ // open the function
+      $("h1").click( //open click()
+        function() { //second function opens
+        $(this).slideUp();
+        console.log("sliding")
+      } //second function closes
+    ) // click() closes
+  } //close the function
+  ); //close the (document).ready
   </script>
-<h1>Make me disappear</h1>
-<h1>Make me disappear too</h1>
+  <h1>Make me disappear</h1>
+  <h1>Make me disappear too</h1>
 </body>
 </html>
