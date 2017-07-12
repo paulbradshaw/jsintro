@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+  <p>While you have been reading this, Apple has earned £<span id="money">0</span></p>
+  <script>
+  var annualTotal = 37470000000;
+  var amountPerSecond = annualTotal/365/24/60/60; //365 days, 24 hours, 60 minutes, 60 seconds
+  console.log("per second amount is "+amountPerSecond);
+  var runningTotal = 0
+  document.getElementById('money').innerHTML = runningTotal;
+
+  function updateAmount(){
+    console.log("updateAmount running");
+    console.log(runningTotal);
+    runningTotal = runningTotal+amountPerSecond;
+    //insert runningTotal into page
+    document.getElementById('money').innerHTML = runningTotal;
+  }
+  setInterval(updateAmount, 1000);
+  </script>
+
+</body>
+</html>

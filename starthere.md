@@ -66,7 +66,7 @@ Variable names in JavaScript cannot begin with a number.
 Functions are created with `function`, followed by the name of the function, parentheses (which name any variables it needs to use), and a *block* with the code that it executes when called. For example:
 
 ```js
-function doubleNumber(numtodouble){
+function DoubleNumber(numtodouble){
   console.log(numtodouble * 2);
   }
 ```
@@ -88,7 +88,7 @@ function DoubleNumber(numtodouble){
 var storingNumber = DoubleNumber(2);
 ```
 
-Here the function `doubleNumber` *returns* the result of something being doubled. This is stored in the variable `storingNumber` which called the function.
+Here the function `DoubleNumber` *returns* the result of something being doubled. This is stored in the variable `storingNumber` which called the function.
 
 ### Named and anonymous functions
 

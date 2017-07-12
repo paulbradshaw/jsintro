@@ -259,7 +259,37 @@ The code currently includes the answer for question 1, with the result and score
 
 ## Tasks
 
-* 
+*
+
+## Answers
+
+First we need to store the answers in a variable:
+
+```js
+var answers = ["Six all-female acts have headlined the main stage. They are Adele, Beyonce, Florence and the Machine, Shakespear's Sister, Suzanne Vega and Sinead O'Connor.", "Senegalese songwriter Youssou N'Dour headlined Glastonbury in 1992."]
+```
+
+Second we need to store the question number as an attribute:
+
+```html
+<div class="question" data-index=1>
+```
+
+Third, the JavaScript needs to grab that attribute. Because JavaScript uses a zero-based index (it starts counting from 0), we need to subtract 1.
+
+```js
+var questionNumber = $(this).parents("div").attr("data-index")-1;
+```
+
+Finally, we use that variable to access the right answer from the list:
+
+```js
+$('div#changeme').html("<p><strong>"
+                                 +result+
+                                 "</strong>! Your score is "
+                                 +userScore+
+                                 "<em>. "+answers[questionNumber]+"</em></p>");  
+```
 
 
 ## Extra tips and warnings
