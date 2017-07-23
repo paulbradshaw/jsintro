@@ -148,10 +148,14 @@ Next, after the table we can add two links: one to the CSS file and another to t
 
 ```html
 <link rel="stylesheet" href="pie.min.css">
-<script src='pie.min.js'></script>
+<script async src="pie.min.js"></script>
 ```
 
-That's it! Once you've saved the file, open it in a browser to test that it's working.
+That's it! Here's the HTML in full including the table and those new tags:
+
+
+
+Once you've saved the file, open it in a browser to test that it's working.
 
 You might notice something quite cool about the Factmint pie chart: if you have lots of rows, like our data does, it does not create lots of tiny slices - which is bad pie chart design. Instead it shows the four biggest slices and then aggregates the rest into an 'other' slice - but you can click on that 'other' slice to see a further breakdown pop out. And you can hover over those slices to see what they are.
 
@@ -189,8 +193,112 @@ A new webpage will be created on the github.io domain - specifically at *your* g
 
 Note that if you called your webpage anything other than *index.html* you will need to add that filename on the end of the address too. For example, if you called your HTML page 'test.html' then you will need to click on the link and then add `/test.html` at the end.
 
+## Customising the colours
+
+At the moment we are relying on Factmint's default assumptions about how to colour this pie chart - but with most libraries there is an opportunity to customise some settings. Normally to find out about these customisations you would look at the *documentation*...
+
+...Unfortunately the link to Factmint's pie chart documentation is broken, as are many of the other links in their GitHub repo. A quick Google search, then, is needed. This throws up some help, such as [this post introducing colour customisation](http://factmint.com/customizing-colours-for-pie-and-doughnut-charts/):
+
+> "Changing the colours is really simple to achieve. Each segment in the pie and doughnut charts is represented by a <tr>. You can apply a `data-fm-color` attribute to each <tr>. The attribute’s value can be any valid CSS colour."
+
+Try to do that with your own HTML. An example for turning the slice for one row's number would look like this (make sure you pick a slice you know you can find on the chart, such as one of the biggest ones):
+
+```html
+<tr data-fm-color="#ff0000"><td>Unable to prosecute suspect</td><td>1649291</td></tr>
+```
+
+Note that Factmint's default colours draw from a palette which has clearly been carefully considered: the colours work well together. So if you're going to change those colours it's worth first compiling your own palette of colours that work together just as well or better. There are plenty of online tools to help you create colour palettes - just search for 'colour palette maker' or something similar.
+
+## Other chart types
+
+After all this effort to make a pie chart it may be that you actually want to create a different type of chart. A pie chart is useful for showing the composition of a thing (where all amounts add up to 100%), but it isn't the best chart for showing comparison, for example (a bar chart - or line chart if comparing over time - are better for that).
+
+Thankfully, the process is much the same to make other Factmint charts as well - the main difference for some charts is ensuring the table of data is formatted appropriately.
+
+You can use exactly the same table - or data structured in the same way - to create a doughnut chart or bar charts. All you need to change is those three lines, like so for a doughnut chart:
+
+```html
+<table class="fm-doughnut">
+
+<link rel="stylesheet" href="doughnut.min.css">
+<script async src="doughnut.min.js"></script>
+```
+
+And like so for a bar chart:
+
+```html
+<table class="fm-column-bar">
+
+<link rel="stylesheet" href="column-bar.min.css">
+<script async src="column-bar.min.js"></script>
+```
+
+Remember that you will also have to download the relevant CSS and JS files for that particular chart from [the Factmint Chart repo's dist folder](https://github.com/factmint/Charts/tree/master/dist), and upload them to the same location as your HTML file as you did before.
+
+### Different data structures for different charts
+
+For other chart types you will need to work out how the data should be structured. Here the lack of documentation is a problem - but for the purposes of this book it is also an opportunity to demonstrate some more skills for finding tips and hints elsewhere.
+
+One tip is to search Codepen itself - in fact, you will find that [Factmint has an account on Codepen, with some examples of code](https://codepen.io/Factmint/). [One of those is a **stacked column/bar chart**](https://codepen.io/Factmint/pen/gabaQx), which includes an example of how the data is structured. I've truncated the table part below:
+
+```html
+<table class="fm-stacked-column-bar"
+       data-fm-axis-label="Sales"
+       data-fm-value-prefix="£">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Ice cream</th>
+			<th>Umbrellas</th>
+			<th>Horse shoes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>2004</td>
+			<td>1500</td>
+			<td>6500</td>
+			<td>4200</td>
+		</tr>
+		<tr>
+			<td>2005</td>
+			<td>1045</td>
+			<td>6000</td>
+			<td>4567</td>
+		</tr>
+	</tbody>
+</table>
+```
+
+Here we can see that the labels of each column/bar are in the first `<td>` tag of each row. These are followed by three numerical values which the chart stacks on top of each other.
+
+The `<thead><tr>` row is important in setting the labels that are shown when the user hovers over any particular part of the chart - and note that a total is calculated and displayed by the library too.
+
+Would it handle more values? Try it and see - but remember to add extra headings to that `<thead><tr>` row when you do so.
+
+This code also provides some extra clues around customisation within the `<table>` tag:
+
+```html
+<table class="fm-stacked-column-bar"
+       data-fm-axis-label="Sales"
+       data-fm-value-prefix="£">
+```
+
+What does the `data-fm-axis-label` attribute do? Well, we might guess that it specifies a label to be added to one of the axes - and if we look at the chart we can see the label "Sales" is on the y axis. That guess can be tested by changing "Sales" in the code to a different word, or removing that attribute to see if it disappears from the chart.
+
+Likewise the `data-fm-value-prefix` attribute seems to add a pound sign as a prefix to something - and again if we look at the chart we can see pound signs added to the values on the y axis. To test it we could change it to a dollar sign, or remove it, and see what happens.
+
+We can also try these attributes on other charts with y axes.
+
+Similar lessons can be drawn from [the example of a 'Line over column chart'](https://codepen.io/Factmint/pen/vNENqm) on Factmint's Codepen, choropleth maps [for the UK](https://codepen.io/Factmint/pen/BNNyqR/) and [world countries](https://codepen.io/Factmint/pen/GpWrWj), a [pictorial bar chart](https://codepen.io/Factmint/pen/ogGzpz), [candlestick chart](https://codepen.io/Factmint/pen/MYEjrd) and others. Make sure you switch from Factmint's Codepen 'homepage' - which defaults to the 'showcase' view - and [their 'public pens' view](https://codepen.io/Factmint/pens/public/), which shows all pens.
+
+## Summary
 
 
-W> ### What if the original repo is deleted?
-W>
-W> If Factmint deleted their repo, yours would still exist. GitHub's Help pages [say](https://help.github.com/articles/what-happens-to-forks-when-a-repository-is-deleted-or-changes-visibility/): "When you delete a public repository, one of the existing public forks is chosen to be the new parent repository.". You can [read more about forks on GitHub's Help pages, including how to sync and reflect any updates](https://help.github.com/articles/fork-a-repo/)
+
+## Challenges
+
+
+### What if the original repo is deleted?
+
+If Factmint deleted their repo, yours would still exist. GitHub's Help pages [say](https://help.github.com/articles/what-happens-to-forks-when-a-repository-is-deleted-or-changes-visibility/): "When you delete a public repository, one of the existing public forks is chosen to be the new parent repository.". You can [read more about forks on GitHub's Help pages, including how to sync and reflect any updates](https://help.github.com/articles/fork-a-repo/)
