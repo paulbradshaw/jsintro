@@ -2,13 +2,15 @@
 
 Interactive tables are useful - but at some point you're going to want to turn your table into an interactive chart. One of the easiest ways to do that is a visualisation library called **Factmint**.
 
-Factmint is used by The Telegraph, among other organisations, because it requires very little coding knowledge at all - all you need is:
+Factmint has been used by The Telegraph, among other organisations, because it requires very little coding knowledge at all - all you need is:
 
 * A HTML page containing a table and links to...
 * A CSS file, and
 * A JS file
 
-But for our purposes, it's a particularly useful library to get to know some techniques around using GitHub, and storing stylesheets and JavaScript.
+It also has some other advantages. Chief among these is *accessibility*: because it uses a HTML table on the same page, if the chart doesn't load then the user still sees the table and the information.
+
+For our purposes, it's also a particularly useful library to get to know some techniques around using GitHub, and storing stylesheets and JavaScript.
 
 ## Finding the Factmint library
 
@@ -38,9 +40,7 @@ Now you have a copy, we can start using it.
 
 ## Create a HTML table
 
-Factmint takes a HTML table and turns it into a chart. This is great for accessibility because if the user has JavaScript or CSS turned off, they can still read the data.
-
-One of the quickest ways to create a HTML table is to use the online tool [Tableizer](http://tableizer.journalistopia.com/): this allows you to copy a table from a spreadsheet, paste it in the box, and generate the HTML for a table containing that data. It does add some styling - but we can remove that.
+Factmint takes a HTML table and turns it into a chart, so we need our data in a HTML table. One of the quickest ways to create a HTML table is to use the online tool [Tableizer](http://tableizer.journalistopia.com/): this allows you to copy a table from a spreadsheet, paste it in the box, and generate the HTML for a table containing that data. It does add some styling - but we can remove that.
 
 We're going to use some data from a [BBC story on unsolved crime](http://www.bbc.co.uk/news/uk-england-40131277), because it gives us a change to explore GitHub further. That story [has its own GitHub repo](https://github.com/BBC-Data-Unit/unsolved-crime), and within that repo is [some data we can use for a pie chart](https://github.com/BBC-Data-Unit/unsolved-crime/blob/master/outcomes_totals_2012-2016.csv). Because it's in CSV format, GitHub actually displays the data in a nice readable HTML table. Now you could just copy and paste that data, but that's a bit fiddly. And you could fork or clone the repo - but we only want the one file, not all of the files in this repo.
 
@@ -153,7 +153,47 @@ Next, after the table we can add two links: one to the CSS file and another to t
 
 That's it! Here's the HTML in full including the table and those new tags:
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+      <table class="fm-pie">
+      <thead><tr class="tableizer-firstrow"><th>Outcome</th><th>Total 2012-2016</th></tr></thead><tbody>
+       <tr><td>Action to be taken by another organisation</td><td>14753</td></tr>
+       <tr><td>Awaiting court outcome</td><td>154882</td></tr>
+       <tr><td>Court case unable to proceed</td><td>110062</td></tr>
+       <tr><td>Court result unavailable</td><td>715163</td></tr>
+       <tr><td>Defendant found not guilty</td><td>236722</td></tr>
+       <tr><td>Defendant sent to Crown Court</td><td>2023</td></tr>
+       <tr><td>Formal action is not in the public interest</td><td>105427</td></tr>
+       <tr><td>Further investigation is not in the public interest</td><td>9190</td></tr>
+       <tr><td>Investigation complete; no suspect identified</td><td>9424687</td></tr>
+       <tr><td>Local resolution</td><td>482307</td></tr>
+       <tr><td>Offender deprived of property</td><td>8337</td></tr>
+       <tr><td>Offender fined</td><td>199848</td></tr>
+       <tr><td>Offender given a caution</td><td>611237</td></tr>
+       <tr><td>Offender given a drugs possession warning</td><td>215169</td></tr>
+       <tr><td>Offender given absolute discharge</td><td>6354</td></tr>
+       <tr><td>Offender given community sentence</td><td>336746</td></tr>
+       <tr><td>Offender given conditional discharge</td><td>158314</td></tr>
+       <tr><td>Offender given penalty notice</td><td>158807</td></tr>
+       <tr><td>Offender given suspended prison sentence</td><td>140058</td></tr>
+       <tr><td>Offender ordered to pay compensation</td><td>22797</td></tr>
+       <tr><td>Offender otherwise dealt with</td><td>47376</td></tr>
+       <tr><td>Offender sent to prison</td><td>372758</td></tr>
+       <tr><td>Suspect charged as part of another case</td><td>93087</td></tr>
+       <tr><td>Unable to prosecute suspect</td><td>1649291</td></tr>
+       <tr><td>Under investigation</td><td>2427381</td></tr>
+       <tr><td>(blank)</td><td>11640944</td></tr>
+      </tbody></table>
 
+      <link rel="stylesheet" href="pie.min.css">
+      <script async src="pie.min.js"></script>
+    </body>
+</html>
+```
 
 Once you've saved the file, open it in a browser to test that it's working.
 
@@ -292,12 +332,54 @@ We can also try these attributes on other charts with y axes.
 
 Similar lessons can be drawn from [the example of a 'Line over column chart'](https://codepen.io/Factmint/pen/vNENqm) on Factmint's Codepen, choropleth maps [for the UK](https://codepen.io/Factmint/pen/BNNyqR/) and [world countries](https://codepen.io/Factmint/pen/GpWrWj), a [pictorial bar chart](https://codepen.io/Factmint/pen/ogGzpz), [candlestick chart](https://codepen.io/Factmint/pen/MYEjrd) and others. Make sure you switch from Factmint's Codepen 'homepage' - which defaults to the 'showcase' view - and [their 'public pens' view](https://codepen.io/Factmint/pens/public/), which shows all pens.
 
-## Summary
+One thing you might notice in these pens is that the links to the CSS and JS files don't point to a local file like `href="pie.min.css`. Instead, they point to a file on the factmint.io domain, like so:
 
+```html
+<link rel="stylesheet" href="https://factmint.io/stacked-area.css">
+<script async src="https://factmint.io/stacked-area.js"></script>
+```
 
+You can use links like these yourself (e.g. `<script src="https://factmint.io/pie.js"></script>`), and they will indeed work. However, there's no guarantee that they'll always work: given that links to Factmint's own documentation no longer works, and they are no longer offering the charts API service that they once did, at some point they may also decide to move those files, and all your charts will stop working (although at least users will still see the table). For that reason, it's best to follow their recommendations and download your own copies instead.
+
+## Summing it all up: the key points
+
+In this chapter we've used a basic charts library to turn a HTML table into an interactive chart, and picked up some other techniques and tips along the way. Here are the key takeaways:
+
+* **Factmint is a useful JavaScript library for creating charts from HTML tables**. The code can be found on their GitHub repo at [Github.com/factmint/Charts](https://github.com/factmint/Charts).
+
+* One strength of Factmint is that **if the JavaScript doesn't work, or is turned off, the user will still be able to see a table of the data**.
+
+* To turn a HTML table into a Factmint chart you just need **three lines of code**: a `class` attribute tag on the table; a link to the relevant CSS file for the chart type; and a link to the relevant JS file.
+
+* **A quick way to turn a spreadsheet into a HTML table is the online tool [Tableizer](http://tableizer.journalistopia.com/)** - but remember to turn CSS off.
+
+* **Forking a repository from GitHub allows you to keep a copy of useful libraries and CSS files** in your own GitHub account. This is particularly useful with a company like Factmint which appears to have moved on from maintaining its library.
+
+* **Hosting CSS and JS files alongside your HTML page allows you to ensure the code always has access to those files**.
+
+* You can **find Factmint's CSS and JS files in [its 'dist' folder](https://github.com/factmint/Charts/tree/master/dist)**
+
+* When downloading files from GitHub **make sure you go to the *Raw* version** and save that.
+
+* You can **add extra customisation to the chart by adding extra attributes**.
+
+* **The structure of the table needs to match the type of chart being created**: for a pie chart, doughnut or bar chart that just means a table with two columns: one with labels and the other with values. But others will vary.
+
+* **To find the right structure, look for working examples on Codepen and elsewhere**. [Factmint's own Codepen account](https://codepen.io/Factmint/pens/public/) has lots of useful examples that can be forked.
+
+* If you need help with a library, **search for examples of it being used on services like Codepen**.
 
 ## Challenges
 
+* Find a different dataset and decide on the right chart to tell its story. What does it achieve that other chart types don't? What weaknesses might it have?
+
+* Create a pie chart, then change it to a doughnut chart, then a bar chart. Is there a way to add a button that triggers a JavaScript function that switches between the three?
+
+* Create a new colour palette using a colour palette maker, and use that palette to customise the colours for each row in your data.
+
+* Find an example of another chart on one of [Factmint's Codepen examples](https://codepen.io/Factmint/pens/public/) - adapt it for a different dataset.
+
+* Look for other customisation options in the code behind the examples on Factmint's Codepen. Apply these options to your own charts.
 
 ### What if the original repo is deleted?
 
