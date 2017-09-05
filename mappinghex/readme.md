@@ -204,3 +204,7 @@ There are various ways of populating this - for example you could use `if` tests
 ```
 
 That now fetches the `"h"` attribute, and uses it to specify the fill colour for each hex tile.
+
+## See also
+
+Tony Hirst has written about creating a [HexJSON HTMLWidget for R, starting here](https://blog.ouseful.info/2017/06/28/hexjson-htmlwidget-for-r-part-1/), with two subsequent parts.
