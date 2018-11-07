@@ -1,0 +1,19 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width: 100%;
+    margin: 5%;
+}
+
+#vis {
+    margin:20px;
+    width: 500px;
+    height: 500px;
+}
+
+@media (min-width: 700px) { 
+    body {
+        width: 60%;
+        margin: auto;
+        padding-top: 30px;
+    }
+}

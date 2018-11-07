@@ -23,7 +23,7 @@ A HTML page starts and ends with a `html` tag, and normally has a `head` section
 </html>
 ```
 
-There are a couple of extra elements here - for example the [DOCTYPE declaration](https://en.wikipedia.org/wiki/Document_type_declaration) and [the `lang=` attribute of the `<html>` tag](https://www.w3schools.com/tags/att_lang.asp). You can click on those links to read more about those if you want to. But I'm going to move on. 
+There are a couple of extra elements here - for example the [DOCTYPE declaration](https://en.wikipedia.org/wiki/Document_type_declaration) and [the `lang=` attribute of the `<html>` tag](https://www.w3schools.com/tags/att_lang.asp). You can click on those links to read more about those if you want to. But I'm going to move on.
 
 ## Step 2: Copy the links to the CSS and JavaScript from Bootstrap
 
@@ -44,11 +44,11 @@ If you want to, you can also add a `<title>` tag, or any other tags that you wan
 
 ## Step 3: Copy example code for the Jumbotron template
 
-In that [Getting Started page](http://getbootstrap.com/getting-started/) you will also find a [section showing examples](http://getbootstrap.com/getting-started/#examples) built with the framework. One of these is **Jumbotron**. 
+In that [Getting Started page](http://getbootstrap.com/getting-started/) you will also find a [section showing examples](http://getbootstrap.com/getting-started/#examples) built with the framework. One of these is **Jumbotron**.
 
 We are going to copy the code from that example, and then adapt it.
 
-First, then, [go to the page with the Jumbotron example](http://getbootstrap.com/examples/jumbotron/). Right-click on the page and select **View source** to see the code. 
+First, then, [go to the page with the Jumbotron example](http://getbootstrap.com/examples/jumbotron/). Right-click on the page and select **View source** to see the code.
 
 Start copying from just under the `<body>` tag, and copy everything until the closing `</body>` tag.
 
@@ -126,10 +126,10 @@ Now you have a direct copy of the Jumbotron page. But you want to adapt that to 
 The page consists of a number of elements. These can be broken down like so:
 
 * The navigation, which begins with `<nav class="navbar navbar-inverse navbar-fixed-top">` and ends with `</nav>`
-* The main title and text area at the top of the page, which begins with `<div class="jumbotron"> <div class="container">` and ends with `</div> </div>` 
+* The main title and text area at the top of the page, which begins with `<div class="jumbotron"> <div class="container">` and ends with `</div> </div>`
 * The columns of text, which begin with `<div class="container"> <div class="row">` and ends with `</div> </div>`
 
-The title area can be customised by just changing the text inside tags like `<h1>` (heading) and `<p>` (paragraph). The text across the top of the navigation can also be changed by changing the text between `<a class="navbar-brand" href="#">` and `</a>`. 
+The title area can be customised by just changing the text inside tags like `<h1>` (heading) and `<p>` (paragraph). The text across the top of the navigation can also be changed by changing the text between `<a class="navbar-brand" href="#">` and `</a>`.
 
 I'm going to focus instead on how the columns work, because that's the most interesting bit.
 
@@ -173,7 +173,7 @@ As well as text you can of course add images or embedded media like video and au
 
 `<img src="http://petplays.co.uk/wp-content/uploads/2013/06/Vocalizations-and-ear-movements-of-a-cat-tips.png" width="100%" style="margin:20px 0px"/>`
 
-When the image tag includes `width="100%"` it takes up the width of the `div` block (not the entire page). This means as the div gets resized, so the width of the image does too. You can [see an example I created here](https://paulbradshaw.github.io/jsplay/bootstrap.html). 
+When the image tag includes `width="100%"` it takes up the width of the `div` block (not the entire page). This means as the div gets resized, so the width of the image does too. You can [see an example I created here](https://paulbradshaw.github.io/jsplay/bootstrap.html).
 
 Note that I've also added `style="margin:20px 0px"` to create a small margin of breathing space around the image too. This isn't the best way to do it - it would be better to add a CSS style to apply to all images, earlier in the page or in a separate CSS file. But I've done it this way so you can see why it has a margin.
 

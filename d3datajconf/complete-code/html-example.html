@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataJConf - D3 Example</title>
+    <!-- D3 Version 4 -->
+    <script src="//d3js.org/d3.v4.min.js"></script>
+    <!-- Colorbrewer Library for colour scales -->
+    <script src="//d3js.org/colorbrewer.v1.js"></script>
+    <!-- Minimal styling -->
+    <style>
+        html, body, #vis {
+            margin: 0;
+            height: 100%;
+            font-family: sans-serif;
+        }
+
+        form {
+            padding: 10px;
+        }
+        .bar {
+            background-color: red;
+            text-align: right;
+            color: white;
+            padding: 3px;
+            margin: 1px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Input values for data creation -->
+    <form>
+        <input type="button" onclick="update()" value="Update"/>
+        Max Height:
+        <input type="range" value="50" min="0" max="100" id="maximumHeight">
+        Max Weight:
+        <input type="range" value="50" min="0" max="100" id="maximumWeight">
+        Max IQ:
+        <input type="range" value="50" min="0" max="100" id="maximumIQ">
+        Max Speed:
+        <input type="range" value="50" min="0" max="100" id="maximumSpeed">
+    </form>
+
+    <!-- Visualisation will go here -->
+    <div id="vis"></div>
+
+    <!-- The code! -->
+    <script>
+
+        var maxDataItems = 10;
+
+        function update() {
+            /*
+                Update function reads the input values, creates random data, and updates the visualisation accordingly
+            */
+            var maxHeightValue = d3.select('#maximumHeight').node().value;
+            var maxWeightValue = d3.select('#maximumWeight').node().value;
+            var maxIQ = d3.select('#maximumIQ').node().value;
+            var maxSpeed = d3.select('#maximumSpeed').node().value;
+
+            var exampleData = createRandomData(maxDataItems, maxHeightValue, maxWeightValue, maxIQ, maxSpeed);
+
+            // select the element we're displaying the data in
+            var visElement = document.getElementById('vis');
+            visElement.innerHTML = "";
+
+            // loop through all the data items to display
+            for(var i = 0; i < exampleData.length; i++) {
+                // create a div for each data item
+                var bar = document.createElement('div')
+                // add the text value of the data item to the div
+                var newContent = document.createTextNode(exampleData[i].Height);
+                bar.appendChild(newContent);
+                // add the 'bar' class to the div
+                bar.className += 'bar';
+                // set the height of the div according to the data value
+                bar.style.width = exampleData[i].Height * 10 + 'px';
+                // add the bar to the visualisation
+                visElement.appendChild(bar);
+            }
+
+        }
+
+        // call the update on page load to intialise the visualisation
+        update();
+
+
+        function createRandomData(maxDataItems, maxHeightValue, maxWeightValue, maxIQValue, maxSpeedValue) {
+            /*
+             * function to create an array of random data objects of size X,
+             * where 1 <= X <= maxDataItems
+             * Each object has properties "Height", "Weight", "IQ", "Speed", with
+             * values V, where 1 <= V <= maxValue
+             */
+            var numDataItems = Math.floor((Math.random() * maxDataItems) + 1);
+            var d = [];
+            for(var i = 0; i < numDataItems; i++) {
+                var height = Math.floor((Math.random() * maxHeightValue) + 1);
+                var weight = Math.floor((Math.random() * maxWeightValue) + 1);
+                var iq = Math.floor((Math.random() * maxIQValue) + 1);
+                var speed = Math.floor((Math.random() * maxSpeedValue) + 1)
+                d.push({
+                    "Height": height,
+                    "Weight": weight,
+                    "IQ": iq,
+                    "Speed": speed
+                });
+            }
+            return d;
+        }
+    </script>
+
+</body>
+</html>
